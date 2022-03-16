@@ -7,7 +7,7 @@
 
 
 # statemachine
-You can create a mechanism that can separate and manage processing for each state.
+can create a mechanism that can separate and manage processing for each state.
 
 This feature is one of the "j1Tech" developed by jwellone Inc for Unity.
 
