@@ -1,0 +1,16 @@
+{
+    "name": "jwellone.StateMachinSample",
+    "rootNamespace": "",
+    "references": [
+        "GUID:45b616b2b95234963b32d4266cf0264d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
