@@ -15,7 +15,8 @@ This feature is one of the "j1Tech" developed by jwellone Inc for Unity.
 ## Getting Started
 - Import the package.
 - Open and run SampleScene.unity.
-- [Here is a sample program.](https://github.com/jwellone/statemachine/blob/main/Assets/jwellone/StateMachine/Sample/StateMachineSample/Scripts/SampleScene.cs) 
+- [Here is a StateMachine sample program.](https://github.com/jwellone/statemachine/blob/main/Assets/jwellone/StateMachine/Sample/StateMachineSample/Scripts/SampleScene.cs) 
+- [Here is a FunctionStateMachine sample program.](https://github.com/jwellone/statemachine/blob/main/Assets/jwellone/StateMachine/Sample/FunctionStateMachineSample/Scripts/SampleScene.cs)
 
 ![statemachine](https://user-images.githubusercontent.com/85072161/158657355-082d607d-9ee5-41e4-aa39-d43941e7725d.gif)
 
