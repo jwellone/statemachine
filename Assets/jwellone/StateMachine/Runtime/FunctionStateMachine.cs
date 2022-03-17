@@ -39,7 +39,6 @@ namespace jwellone.StateMachine
 		}
 
 		private const int EmptyIndex = -1;
-		private const int StateEmpty = -9999;
 		static readonly Func EmptyFunc = new Func();
 
 		public int currentIndex { get; private set; } = EmptyIndex;
@@ -52,7 +51,7 @@ namespace jwellone.StateMachine
 
 		private Func[] _funcArray = null!;
 
-		public void Init(Func[] objects, int initialState = StateEmpty)
+		public void Init(Func[] objects, int initialState = EmptyIndex)
 		{
 			_funcArray = objects;
 			ChangeState(initialState);
@@ -66,32 +65,29 @@ namespace jwellone.StateMachine
 
 				var current = GetFunc(currentIndex);
 
-				if (StateEmpty != nextIndex)
+				if (EmptyIndex != nextIndex)
 				{
-					current.exit();
-
-					prevIndex = currentIndex;
-					currentIndex = nextIndex;
+					var next = nextIndex;
 					nextIndex = EmptyIndex;
-					current = GetFunc(currentIndex);
-					nextIndex = StateEmpty;
+					if (current.canChangeStateDelegate(next))
+					{
+						current.exit();
 
-					current.enter();
+						prevIndex = currentIndex;
+						currentIndex = next;
+						current = GetFunc(currentIndex);
+
+						current.enter();
+					}
 				}
 
 				current.execute(deltaTime);
 			} while (isRepeat);
 		}
 
-		public bool ChangeState(int next, bool isForce = false)
+		public void ChangeState(int next)
 		{
-			if (!isForce && next == currentIndex || !GetFunc(currentIndex).canChangeStateDelegate(next))
-			{
-				return false;
-			}
-
 			nextIndex = next;
-			return true;
 		}
 
 		public void OnRepeat()

@@ -43,13 +43,7 @@ namespace jwellone.FunctionStateMachineSample
 
 		public void OnClickPlay()
 		{
-			if (float.TryParse(_inputField.text, out var time))
-			{
-				if (_stateMachine.ChangeState((int)State.Play))
-				{
-					_time = time;
-				}
-			}
+			_stateMachine.ChangeState((int)State.Play);
 		}
 
 		public void OnClickStop()
@@ -59,8 +53,7 @@ namespace jwellone.FunctionStateMachineSample
 
 		public void OnClickPause()
 		{
-			var state = _stateMachine.currentIndex == (int)State.Pause ? State.Play : State.Pause;
-			_stateMachine.ChangeState((int)state);
+			_stateMachine.ChangeState((int)State.Pause);
 		}
 
 		void StopEnter()
@@ -76,7 +69,14 @@ namespace jwellone.FunctionStateMachineSample
 
 		bool CanChangedStateFromStop(int nextState)
 		{
-			return (State)nextState == State.Play;
+			if ((State)nextState != State.Play ||
+				!float.TryParse(_inputField.text, out var time))
+			{
+				return false;
+			}
+
+			_time = time;
+			return true;
 		}
 
 		void PlayEnter()
@@ -110,6 +110,10 @@ namespace jwellone.FunctionStateMachineSample
 		void PauseEnter()
 		{
 			Debug.Log($"PauseEnter");
+			if (_stateMachine.prevIndex == (int)State.Pause)
+			{
+				_stateMachine.ChangeState((int)State.Play);
+			}
 		}
 
 		void PauseExit()
